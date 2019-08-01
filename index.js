@@ -32,17 +32,14 @@ module.exports = function (content) {
         prefix = prefix.replace(pathSepRegex, pathSep);
         resource = resource.replace(pathSepRegex, pathSep)
     }
+		
 
     var relativeToIndex = resource.indexOf(relativeTo);
     if (relativeToIndex === -1 || (absolute && relativeToIndex !== 0)) {
         throw new Error('The path for file doesn\'t contain relativeTo param');
     }
 
-    // a custom join of prefix using the custom path sep
-    var filePath = [prefix, resource.slice(relativeToIndex + relativeTo.length)]
-        .filter(Boolean)
-        .join(pathSep)
-        .replace(new RegExp(escapeRegExp(pathSep) + '+', 'g'), pathSep);
+    var filePath = path.join(prefix, resource.slice(relativeToIndex + relativeTo.length)).replace(pathSepRegex, pathSep); // get the base path
     var html;
 
     if (content.match(/^module\.exports/)) {
