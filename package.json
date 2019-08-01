@@ -1,5 +1,5 @@
 {
-  "name": "ngtemplate-loader-fix",
+  "name": "ngtemplate-fix-loader",
   "version": "0.7.0",
   "description": "Include AngularJS templates in the Webpack bundle and preload the template cache.",
   "main": "index.js",
